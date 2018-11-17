@@ -12,6 +12,7 @@ permissions = discord.Permissions
 PRserver = "Private Server"
 LogRoom = bot.get_channel(id="401752340366884885")
 underworking = ":warning: **Meh, this command hasn't finished. Please wait until it's got.** :warning:"
+bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
 
 #-----------------SETUP----------------------
@@ -29,7 +30,7 @@ class NoPermError(Exception):
 #----------------COMMANDS--------------------
 @bot.command(pass_context=True)
 async def typing(ctx):
-    await bot.say("**Im typing something** <:think:385152309090451467>")
+    await bot.say("**Im typing something**")
     await bot.send_typing(ctx.message.channel)
 
 @bot.command(pass_context=True)
@@ -310,6 +311,67 @@ async def clear(ctx, number : int=None):
         await bot.send_message(LogRoom, embed=em)
         await asyncio.sleep(4)
         await bot.delete_message(msg)
+
+#-----------------------------------------------
+@bot.command(pass_context=True)
+async def sub(ctx, x : int=None, y : int=None):
+    if x is None:
+        await bot.reply("**The usage is `>sub {number} {number}`**")
+    elif y is None:
+        await bot.reply("**The usage is `>sub {number} {number}`**")
+    else:
+        msg = x - y
+        text = await bot.send_message(ctx.message.channel, "**Hmmm...**")
+        await asyncio.sleep(3)
+        await bot.edit_message(text, f"**Oh, the result: {msg}**")
+    
+@bot.command(pass_context=True)
+async def mul(ctx, x : int=None, y : int=None):
+    if x is None:
+        await bot.reply("**The usage is `>mul {number} {number}`**")
+    elif y is None:
+        await bot.reply("**The usage is `>mul {number} {number}`**")
+    else:
+        msg = x * y
+        text = await bot.send_message(ctx.message.channel, "**Hmmm...**")
+        await asyncio.sleep(3)
+        await bot.edit_message(text, f"**Oh, the result: {msg}**")
+    
+@bot.command(pass_context=True)
+async def div(ctx, x : int=None, y : int=None):
+    if x is None:
+        await bot.reply("**The usage is `>div {number} {number}`**")
+    elif y is None:
+        await bot.reply("**The usage is `>div {number} {number}`**")
+    else:
+        msg = x / y
+        text = await bot.send_message(ctx.message.channel, "**Hmmm...**")
+        await asyncio.sleep(3)
+        await bot.edit_message(text, f"**Oh, the result: {msg}**")
+    
+@bot.command(pass_context=True)
+async def exp(ctx, x : int=None, y : int=None):
+    if x is None:
+        await bot.reply("**The usage is `>exp {number} {number}`**")
+    elif y is None:
+        await bot.reply("**The usage is `>exp {number} {number}`**")
+    else:
+        msg = x ** y
+        text = await bot.send_message(ctx.message.channel, "**Hmmm...**")
+        await asyncio.sleep(3)
+        await bot.edit_message(text, f"**Oh, the result: {msg}**")
+    
+@bot.command(pass_context=True)
+async def add(ctx, x : int=None, y : int=None):
+    if x is None:
+        await bot.reply("**The usage is `>add {number} {number}`**")
+    elif y is None:
+        await bot.reply("**The usage is `>add {number} {number}`**")
+    else:
+        msg = x + y
+        text = await bot.send_message(ctx.message.channel, "**Hmmm...**")
+        await asyncio.sleep(3)
+        await bot.edit_message(text, f"**Oh, the result: {msg}**")
 
 @bot.command(pass_context=True)
 async def roll(ctx, x : int=None, y : int=None):
