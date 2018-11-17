@@ -11,7 +11,7 @@ user = discord.User
 permissions = discord.Permissions
 PRserver = "Private Server"
 LogRoom = bot.get_channel(id="401752340366884885")
-underworking = ":warning: **Meh, this command hasn't finished. Please wait until it's got.** :warning:"
+underworking = ":warning: **Meh, this command hasn't finished, but planned. Please wait until it's got.** :warning:"
 bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
 
@@ -28,6 +28,14 @@ class NoPermError(Exception):
     pass
 
 #----------------COMMANDS--------------------
+@bot.command(pass_context=True)
+async def shift(ctx):
+    await bot.say(underworking)
+
+@bot.command(pass_context=True)
+async def info(ctx):
+    await bot.say(underworking)
+
 @bot.command(pass_context=True)
 async def typing(ctx):
     await bot.say("**Im typing something**")
