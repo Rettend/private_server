@@ -54,7 +54,7 @@ async def suggest(ctx, pref=None, *, text=None):
             em.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
             timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
             em.set_footer(text=timer)
-            channel = bot.get_channel(id="444837114258128916")
+            channel = bot.get_channel(id="506057781489696788")
             await bot.send_message(ctx.message.channel, f"**:white_check_mark: Sent in {channel.mention}**")
             mesg = await bot.send_message(channel, embed=em)
             if pref is "S":
