@@ -3,7 +3,7 @@ from time import gmtime
 from discord.ext import commands
 
 #-------------------DATA---------------------
-bot = commands.Bot(command_prefix='r-', description=None)
+bot = commands.Bot(command_prefix='>' description=None)
 message = discord.Message
 server = discord.Server
 member = discord.Member
