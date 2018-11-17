@@ -28,6 +28,42 @@ class NoPermError(Exception):
     pass
 
 #----------------COMMANDS--------------------
+@commands.cooldown(1, 60, commands.BucketType.user) 
+@bot.command(pass_context=True)
+async def suggest(ctx, pref=None, *, text=None):
+    if pref is None:
+        await bot.reply("**The usage is `>suggest {prefix (Q, S, C, B)} {text}`**")
+    elif text is None:
+        await bot.reply("**The usage is `>suggest {prefix (Q, S, C, B)} {text}`**")
+    else:
+        try:
+            if pref is "S":
+                msg = "SUGGESTION"
+            if pref is "Q":
+                msg = "QUESTION"
+            if pref is "C":
+                msg = "COMMAND SUGGESTION"
+            if pref is "B":
+                msg = "BUGS"
+            else:
+                bot.say("**Please use a valid prefix! The available prefixes: __Q__uestion, __Suggestion__, __Command Suggestion__, __Bugs__**")
+        finally:
+            colours = [0x11806a, 0x1abc9c, 0x2ecc71, 0x1f8b4c, 0x3498db, 0x206694, 0x9b59b6, 0x71368a, 0xe91e63, 0xad1457, 0xf1c40f, 0xc27c0e, 0xe67e22, 0xa84300, 0xe74c3c, 0x992d22, 0x95a5a6, 0x607d8b, 0x979c9f, 0x546e7a]
+            col = random.choice(colours)
+            em = discord.Embed(title=f"{msg}", description=f"**From {ctx.message.author.mention}**\n⋙ {text}", colour=col)
+            em.set_author(name=ctx.message.author, icon_url=ctx.message.author.avatar_url)
+            timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
+            em.set_footer(text=timer)
+            channel = bot.get_channel(id="444837114258128916")
+            await bot.send_message(ctx.message.channel, f"**:white_check_mark: Sent in {channel.mention}**")
+            mesg = await bot.send_message(channel, embed=em)
+            if pref is "S":
+                await bot.add_reaction(mesg, "👍")
+                await bot.add_reaction(mesg, "👎")
+            if pref is "C":
+                await bot.add_reaction(mesg, "👍")
+                await bot.add_reaction(mesg, "👎")
+
 @bot.command(pass_context=True)
 async def shift(ctx):
     await bot.say(underworking)
