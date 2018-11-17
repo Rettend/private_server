@@ -35,7 +35,7 @@ async def typing(ctx):
 @bot.command(pass_context=True)
 async def whoami(ctx):
     LemonRoom = bot.get_channel(id="435081405899210754")
-    msg = ["n't Sponge Bob, sadly....", "n't a boy", " the Captain, aye aye! <:blobSalute:402168383556157442>", " Sir Lancelot", " gay :couple_mm:", " :regional_indicator_y: :regional_indicator_o: :regional_indicator_u:", " banned <:pepeBanhammer:423892407650877442>", "John Dick", " the Terminator!!", f" nothing, so go to {LemonRoom.mention} and farm lemons", " me", " a Bot", "... aaaaaaaaa!! A SPIDER!!!", " SuperMario", "... Its Raining Man!", " the Deathhh", " a dancing skeleton", " your mom's child", " ( ͡° ͜ʖ ͡°) <- this guy", " your mom and your sister is your dad", " a chicken", " a rabbit xd", " a fucking chicken", " _nothing_  hehe", ", wait, who you?", " a giant penis", " the devil >:)", " Donald Trump", " an Alien", " scared as hell... (ha ha)", " somebody, idk u Lol.", " a fat mouse.", " the Sup-sup-super Grandma!", " uhm, Should i know you??", ", ahhhhhh", " You."]
+    msg = ["n't Sponge Bob, sadly....", "n't a boy", " the Captain, aye aye!", " Sir Lancelot", " gay :couple_mm:", " :regional_indicator_y: :regional_indicator_o: :regional_indicator_u:", " banned! haha", " John Dick", " the Terminator!!", " nothing", " me", " a Bot", "... aaaaaaaaa!! A SPIDER!!!", " SuperMario", "... It's Raining Man!", " the Deathhh", " a dancing skeleton", " your mom's child", " ( ͡° ͜ʖ ͡°) <- this guy", " your mom and your sister is your dad", " a chicken", " a rabbit xd", " a fucking chicken", " _nothing_  hehe", ", wait, who you?", " a giant ~~penis~~", " the devil >:)", " Donald Trump", " an Alien", " scared as hell... (ha ha)", " somebody, idk you Lol.", " a fat mouse.", " the Sup-sup-super Grandma!", " uhm, Should i know you??", ", ahhhhhh", " You."]
     smsg = random.choice(msg)
     colours = [0x11806a, 0x1abc9c, 0x2ecc71, 0x1f8b4c, 0x3498db, 0x206694, 0x9b59b6, 0x71368a, 0xe91e63, 0xad1457, 0xf1c40f, 0xc27c0e, 0xe67e22, 0xa84300, 0xe74c3c, 0x992d22, 0x95a5a6, 0x607d8b, 0x979c9f, 0x546e7a]
     col = random.choice(colours)
@@ -359,7 +359,7 @@ async def on_message(message):
         em.add_field(name="Admin commands", value=":small_blue_diamond: >ban {member} {0 - 7 amount of days to delete his messages} {Reason}\n"
                      ":black_small_square: Kicks the user and removes his messages for the given days, the user can't rejoin, until he gots unbanned\n"
                      "\n\n\n")
-        em.add_field(name="Mod commands", value=":small_blue_diamond: r-kick {member} {Reason}\n"
+        em.add_field(name="Mod commands", value=":small_blue_diamond: >kick {member} {Reason}\n"
                      ":black_small_square: Kicks the user from the server, the user can rejoin by instant-invite links\n"
                      "\n"
                      ":small_orange_diamond: >mute {member} {duration(in sec)} {Reason}\n"
@@ -411,6 +411,8 @@ async def on_message(message):
         lenny = random.choice(ears).format(random.choice(eyes)).format(random.choice(mouth))
         await bot.send_message(message.channel, "**A wild Lenny has appeard:**\n\n\t" + lenny)
         await bot.send_message(message.channel, embed=em)
+    if message.content.startswith('>help'):
+        await bot.send_message(message.channel, underworking)
     if message.content.startswith('>bot'):
         em = discord.Embed(description= "The Bot of Project Private Server\n`Made by Rettend`", colour=0x3498db)
         await bot.send_message(message.channel, embed=em)
