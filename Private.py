@@ -37,9 +37,9 @@ async def price(ctx, item=None):
         await bot.reply("**The usage is `>price {item_name}`**")
     else:
         if item is "sulfur":
-            await bot.say(f"**The price of __{item}__:\n`6 EC`**")
-        elif item is "shaped_metal":
-            await bot.say(f"**The price of __{item}__:\n`3 EC`**")
+            await bot.send_message(ctx.message.channel, f"**The price of __{item}__:\n`6 EC`**")
+        if item is "shaped_metal":
+            await bot.send_message(ctx.message.channel, f"**The price of __{item}__:\n`3 EC`**")
 
 """@commands.has_permissions(manage_messages=True)"""
 @bot.command(pass_context=True)
