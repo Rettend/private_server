@@ -43,22 +43,22 @@ async def disable(ctx, *, module=None):
             ecol = 0x2ecc71
             if module is "mod":
                 if disabled_mod is False:
-                    return disabled_mod = True
-                    return disable_message_for_this = disabled_msg
-                    return col = dcol
+                    disabled_mod = True
+                    disable_message_for_this = disabled_msg
+                    col = dcol
                 else:
-                    return disabled_mod = False
-                    return disable_message_for_this = enabled_msg
-                    return col = ecol
+                    disabled_mod = False
+                    disable_message_for_this = enabled_msg
+                    col = ecol
             elif module is "help":
                 if disabled_help is False:
-                    return disabled_help = True
-                    return disable_message_for_this = disabled_msg
-                    return col = dcol
+                    disabled_help = True
+                    disable_message_for_this = disabled_msg
+                    col = dcol
                 else:
-                    return disabled_help = False
-                    return disable_message_for_this = enabled_msg
-                    return col = ecol
+                    disabled_help = False
+                    disable_message_for_this = enabled_msg
+                    col = ecol
         finally:
             e = discord.Embed(title=disable_message_for_this, description=f"The command is now {disable_message_for_this}", colour=col)
             await bot.say(embed=e)
@@ -556,7 +556,6 @@ async def on_message(message):
         mouth = ['v', 'ᴥ', 'ᗝ', 'Ѡ', 'ᗜ', 'Ꮂ', 'ヮ', '╭͜ʖ╮', ' ͟ل͜', ' ͜ʖ', ' ͟ʖ', ' ʖ̯', 'ω', '³', ' ε ', '﹏', 'ل͜', '╭╮', '‿‿', '▾', '‸', 'Д', '∀', '!', '人', '.', 'ロ', '_', '෴', 'ѽ', 'ഌ', '⏏', 'ツ', '益']
         lenny = random.choice(ears).format(random.choice(eyes)).format(random.choice(mouth))
         await bot.send_message(message.channel, "**A wild Lenny has appeard:**\n\n\t" + lenny)
-        await bot.send_message(message.channel, embed=em)
     if message.content.startswith('>help'):
         await bot.send_message(message.channel, underworking)
     if message.content.startswith('>bot'):
