@@ -36,9 +36,9 @@ async def price(ctx, item=None):
     if item is None:
         await bot.reply("**The usage is `>price {item_name}`**")
     else:
-        if item is sulfur:
+        if item is "sulfur":
             price = "6 EC"
-        elif item is shaped_metal:
+        elif item is "shaped_metal":
             price = "3 EC"
         await bot.say(f"**The price of {item}:\n{price}**")
 
