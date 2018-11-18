@@ -43,22 +43,22 @@ async def disable(ctx, *, module=None):
             ecol = 0x2ecc71
             if module is "mod":
                 if disabled_mod is False:
-                    disabled_mod = True
-                    disable_message_for_this = disabled_msg
-                    col = dcol
+                    global disabled_mod = True
+                    global disable_message_for_this = disabled_msg
+                    global col = dcol
                 else:
-                    disabled_mod = False
-                    disable_message_for_this = enabled_msg
-                    col = ecol
+                    global disabled_mod = False
+                    global disable_message_for_this = enabled_msg
+                    global col = ecol
             elif module is "help":
                 if disabled_help is False:
-                    disabled_help = True
-                    disable_message_for_this = disabled_msg
-                    col = dcol
+                    global disabled_help = True
+                    global disable_message_for_this = disabled_msg
+                    global col = dcol
                 else:
-                    disabled_help = False
-                    disable_message_for_this = enabled_msg
-                    col = ecol
+                    global disabled_help = False
+                    global disable_message_for_this = enabled_msg
+                    global col = ecol
         finally:
             e = discord.Embed(title=disable_message_for_this, description=f"The command is now {disable_message_for_this}", colour=col)
             await bot.say(embed=e)
