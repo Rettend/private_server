@@ -16,7 +16,7 @@ disabled = "**:no_entry_sign: Command disabled!**"
 bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
 
-disable_message_for_this, col, disable_mod, disable_help = None
+disable_message_for_this = col = disable_mod = disable_help = None
 
 #-----------------SETUP----------------------
 @bot.event
