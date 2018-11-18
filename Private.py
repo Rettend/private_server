@@ -27,11 +27,6 @@ async def on_ready():
 class NoPermError(Exception):
     pass
 
-@bot.listen()
-async def on_command_error():
-    if CommandOnCooldown:
-        bot.say("**You are on cooldown!**")
-
 #----------------COMMANDS--------------------
 @commands.cooldown(1, 60, commands.BucketType.user) 
 @bot.command(pass_context=True)
