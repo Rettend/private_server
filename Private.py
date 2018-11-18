@@ -33,13 +33,14 @@ class NoPermError(Exception):
 #----------------COMMANDS--------------------
 @bot.command(pass_context=True)
 async def price(ctx, item=None):
+    price = ""
     if item is None:
         await bot.reply("**The usage is `>price {item_name}`**")
     else:
         if item is "sulfur":
-            price = "6 EC"
+            price += "6 EC"
         elif item is "shaped_metal":
-            price = "3 EC"
+            price += "3 EC"
         await bot.say(f"**The price of {item}:\n{price}**")
 
 """@commands.has_permissions(manage_messages=True)"""
