@@ -31,6 +31,17 @@ class NoPermError(Exception):
     pass
 
 #----------------COMMANDS--------------------
+@bot.command(pass_context=True)
+async def price(ctx, item=None):
+    if item is None:
+        await bot.reply("**The usage is `>price {item_name}`**")
+    else:
+        if item is sulfur:
+            price = "6 EC"
+        elif item is shaped_metal:
+            price = "3 EC"
+        await bot.say(f"**The price of {item}:\n{price}**")
+
 """@commands.has_permissions(manage_messages=True)"""
 @bot.command(pass_context=True)
 async def disable(ctx, *, module=None):
@@ -44,22 +55,22 @@ async def disable(ctx, *, module=None):
         ecol = 0x2ecc71
         if module is "mod":
             if disabled_mod is False:
-                disabled_mod = True
-                disable_message_for_this = disabled_msg
-                col = dcol
+                disabled_mod += True
+                disable_message_for_this += disabled_msg
+                col += dcol
             else:
-                disabled_mod = False
-                disable_message_for_this = enabled_msg
-                col = ecol
+                disabled_mod += False
+                disable_message_for_this += enabled_msg
+                col += ecol
         elif module is "help":
             if disabled_help is False:
-                disabled_help = True
-                disable_message_for_this = disabled_msg
-                col = dcol
+                disabled_help += True
+                disable_message_for_this += disabled_msg
+                col += dcol
             else:
-                disabled_help = False
-                disable_message_for_this = enabled_msg
-                col = ecol
+                disabled_help += False
+                disable_message_for_this += enabled_msg
+                col += ecol
         e = discord.Embed(title=disable_message_for_this, description=f"The command is now {disable_message_for_this}", colour=col)
         await bot.say(embed=e)
 
