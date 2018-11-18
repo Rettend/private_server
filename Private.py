@@ -16,6 +16,8 @@ disabled = "**:no_entry_sign: Command disabled!**"
 bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
 
+disable_message_for_this, col, disable_mod, disable_help = None
+
 #-----------------SETUP----------------------
 @bot.event
 async def on_ready():
@@ -36,32 +38,30 @@ async def disable(ctx, *, module=None):
     if module is None:
         await bot.reply("**The usage is `>disable {module}`\n__The available modules are__:\n-mod\n-help**")
     else:
-        try:
-            disabled_msg = "Disabled!"
-            enabled_msg = "Enabled!"
-            dcol = 0xe74c3c
-            ecol = 0x2ecc71
-            if module is "mod":
-                if disabled_mod is False:
-                    global disabled_mod = True
-                    global disable_message_for_this = disabled_msg
-                    global col = dcol
-                else:
-                    global disabled_mod = False
-                    global disable_message_for_this = enabled_msg
-                    global col = ecol
-            elif module is "help":
-                if disabled_help is False:
-                    global disabled_help = True
-                    global disable_message_for_this = disabled_msg
-                    global col = dcol
-                else:
-                    global disabled_help = False
-                    global disable_message_for_this = enabled_msg
-                    global col = ecol
-        finally:
-            e = discord.Embed(title=disable_message_for_this, description=f"The command is now {disable_message_for_this}", colour=col)
-            await bot.say(embed=e)
+        disabled_msg = "Disabled!"
+        enabled_msg = "Enabled!"
+        dcol = 0xe74c3c
+        ecol = 0x2ecc71
+        if module is "mod":
+            if disabled_mod is False:
+                disabled_mod = True
+                disable_message_for_this = disabled_msg
+                col = dcol
+            else:
+                disabled_mod = False
+                disable_message_for_this = enabled_msg
+                col = ecol
+        elif module is "help":
+            if disabled_help is False:
+                disabled_help = True
+                disable_message_for_this = disabled_msg
+                col = dcol
+            else:
+                disabled_help = False
+                disable_message_for_this = enabled_msg
+                col = ecol
+        e = discord.Embed(title=disable_message_for_this, description=f"The command is now {disable_message_for_this}", colour=col)
+        await bot.say(embed=e)
 
 @bot.command(pass_context=True)
 async def test(ctx):
