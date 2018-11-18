@@ -17,7 +17,6 @@ bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
 
 disable_message_for_this = col = disable_mod = disable_help = None
-price = ""
 
 #-----------------SETUP----------------------
 @bot.event
@@ -34,14 +33,12 @@ class NoPermError(Exception):
 #----------------COMMANDS--------------------
 @bot.command(pass_context=True)
 async def price(ctx, item=None):
-    if item is None:
-        await bot.reply("**The usage is `>price {item_name}`**")
+    if item is "sulfur":
+        await bot.say(f"**The price of __{item}__:\n`6 EC`**")
+    elif item is "shaped_metal":
+        await bot.say(f"**The price of __{item}__:\n`3 EC`**")
     else:
-        if item is "sulfur":
-            price += "6 EC"
-        elif item is "shaped_metal":
-            price += "3 EC"
-        await bot.say(f"**The price of {item}:\n{price}**")
+        await bot.reply("**The usage is `>price {item_name}`**")
 
 """@commands.has_permissions(manage_messages=True)"""
 @bot.command(pass_context=True)
