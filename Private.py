@@ -12,6 +12,7 @@ permissions = discord.Permissions
 PRserver = "Private Server"
 LogRoom = bot.get_channel(id="401752340366884885")
 underworking = ":warning: **Meh, this command hasn't finished, but planned. Please wait until it's got.** :warning:"
+disabled = "**:no_entry_sign: Command disabled!**"
 bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
 
@@ -28,6 +29,44 @@ class NoPermError(Exception):
     pass
 
 #----------------COMMANDS--------------------
+@commands.has_permissions(manage_messages=True)
+@bot.command(pass_context=True)
+async def disable(ctx, *, module=None):
+    if module is None:
+        await bot.reply("**The usage is `>disable {module}`\n__The available modules are__:\n-mod\n-help**")
+    else:
+        disabled_msg = "Disabled!"
+        enabled_msg = "Enabled!"
+        dcol = 0xe74c3c
+        ecol = 0x2ecc71
+        if module is "mod":
+            if disabled_mod is False:
+                disabled_mod = True
+                msg = disabled_msg
+                col = dcol
+            else:
+                disabled_mod = False
+                msg = enabled_msg
+                col = ecol
+        elif module is "help":
+            if disabled_help is False:
+                disabled_help = True
+                msg = disabled_msg
+                col = dcol
+            else:
+                disabled_help = False
+                msg = enabled_msg
+                col = ecol
+        e = discord.Embed(title=msg, description=f"The command is now {msg}", colour=col)
+        await bot.say(embed=e)
+
+@bot.command(pass_context=True)
+async def test(ctx):
+    if disabled_mod is True:
+        await bot.say(disabled)
+    else:
+        await bot.say("**Works!**")
+
 @commands.cooldown(1, 60, commands.BucketType.user) 
 @bot.command(pass_context=True)
 async def suggest(ctx, pref=None, *, text=None):
@@ -482,8 +521,6 @@ async def on_message(message):
                      "\n"
                      ":small_orange_diamond: >clear {number of messages to delete}\n"
                      ":black_small_square: Deletes a specific amount of messages")
-        await bot.send_message(message.channel, embed=em)
-        em.set_thumbnail(url="https://cdn.discordapp.com/emojis/430347128100093962.gif?v=1")
         await bot.send_message(message.channel, embed=em)
     if message.content.startswith('>8ball'):
         await bot.send_message(message.channel, random.choice(['**It is certain :8ball:**',
