@@ -515,7 +515,7 @@ async def on_message(message):
                      ":small_blue_diamond: >unmute {member} {Reason}\n"
                      ":black_small_square: UnMutes the Muted user, this user now allowed to send messages\n"
                      "\n"
-                     ":small_orange_diamond: >lock {Reason}\n"
+                     ":small_orange_diamond: >lock {Reason} {duration(in sec)}\n"
                      ":black_small_square: Locks down the currently channel, only Admins can send messages until an unlock\n"
                      "\n"
                      ":small_blue_diamond: >unlock {Reason}\n"
