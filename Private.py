@@ -15,6 +15,8 @@ underworking = ":warning: **Meh, this command hasn't finished, but planned. Plea
 disabled = "**:no_entry_sign: Command disabled!**"
 bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
+disabled_mod = False
+disabled_help = False
 
 #-----------------SETUP----------------------
 @bot.event
@@ -29,7 +31,7 @@ class NoPermError(Exception):
     pass
 
 #----------------COMMANDS--------------------
-@commands.has_permissions(manage_messages=True)
+"""@commands.has_permissions(manage_messages=True)"""
 @bot.command(pass_context=True)
 async def disable(ctx, *, module=None):
     if module is None:
