@@ -15,8 +15,6 @@ underworking = ":warning: **Meh, this command hasn't finished, but planned. Plea
 disabled = "**:no_entry_sign: Command disabled!**"
 bot.remove_command("help")
 """timer = time.strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())"""
-disabled_mod = False
-disabled_help = False
 
 #-----------------SETUP----------------------
 @bot.event
@@ -34,6 +32,7 @@ class NoPermError(Exception):
 """@commands.has_permissions(manage_messages=True)"""
 @bot.command(pass_context=True)
 async def disable(ctx, *, module=None):
+    global disable_message_for_this, disable_mod, disable_help
     if module is None:
         await bot.reply("**The usage is `>disable {module}`\n__The available modules are__:\n-mod\n-help**")
     else:
@@ -44,22 +43,22 @@ async def disable(ctx, *, module=None):
         if module is "mod":
             if disabled_mod is False:
                 disabled_mod = True
-                msg = disabled_msg
+                disable_message_for_this = disabled_msg
                 col = dcol
             else:
                 disabled_mod = False
-                msg = enabled_msg
+                disable_message_for_this = enabled_msg
                 col = ecol
         elif module is "help":
             if disabled_help is False:
                 disabled_help = True
-                msg = disabled_msg
+                disable_message_for_this = disabled_msg
                 col = dcol
             else:
                 disabled_help = False
-                msg = enabled_msg
+                disable_message_for_this = enabled_msg
                 col = ecol
-        e = discord.Embed(title=msg, description=f"The command is now {msg}", colour=col)
+        e = discord.Embed(title=msg, description=f"The command is now {disable_message_for_this}", colour=col)
         await bot.say(embed=e)
 
 @bot.command(pass_context=True)
