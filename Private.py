@@ -58,7 +58,7 @@ async def disable(ctx, *, module=None):
                 disabled_help = False
                 disable_message_for_this = enabled_msg
                 col = ecol
-        e = discord.Embed(title=msg, description=f"The command is now {disable_message_for_this}", colour=col)
+        e = discord.Embed(title=disable_message_for_this, description=f"The command is now {disable_message_for_this}", colour=col)
         await bot.say(embed=e)
 
 @bot.command(pass_context=True)
