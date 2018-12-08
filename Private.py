@@ -499,12 +499,12 @@ async def nick(ctx, *, name=None):
         em = discord.Embed(title="Nickname", description=f"{ctx.message.author}'s nick set to __{name}__!", colour=0x3498db)
         await bot.say(embed=em)
 
-@bot.command(pass_context=True)
+"""@bot.command(pass_context=True)
 async def say(ctx, *, words=None):
     if words is None:
         await bot.reply("**The usage is `>say {Something}`**")
     else:
-        await bot.say(f"**{words}**")
+        await bot.say(f"**{words}**")"""
 
 #-----------------------------------------------
 @bot.event
